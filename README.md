@@ -1,29 +1,40 @@
 # Deribit-simple-market-maker
-## Использование api:
-### Авторизация:
+## Using api:
+### Authorization:
+:
 ```python
 deribit = deribit_interface.Deribit(test=True, 
 	client_ID=<client_ID>,
  	client_secret=<client_secret>)
 ```
-### Создание ордера:
-```python
+### 
+Order creation:
+`` `python
 deribit.make_order(side='sell',
   instrument_name=<instrument_name>,
   amount=<amount>,
   price=<price>,
   post_only=True)
 ```
-Больше примеров в файле market-maker.py 
+
+More examples in the file market-maker.py 
                         
-## Простой маркет-мейкер бот для биржи Deribit (API over WebSocket)
+##
+A simple market maker bot for the exchange Deribit (API over WebSocket)
 
-### Что делает бот:
-1. Выставляет ордера с двух сторон по лучшим ценам bid/ask(пустоты не заполняет).
-2. Ждет выполнение одного из ордеров.
-3. Если один из ордеров исполняется, то ставится противоположный ордер с объемом x2 от изначального (чтобы покрыть текущую позицию и войти в новую).
-3.1. Если цена уходит от цены ордера, ордер обновляется до актуальных цен.
+### What the bot does:
 
-Стратегию и ее параметры можно изменить в файле market-market-maker.py.
-ОСТОРОЖНО! Бот в изначальном виде стабильно приносит убыток, без изменения стратегии вы будете терять деньги.
+1. Places orders from both sides at the best bid / ask prices (does not fill in empty spaces).
+
+2. Waiting for one of the orders to be executed.
+
+3. If one of the orders is executed, then an opposite order is placed with a volume of x2 from the original one (to cover the current position and enter a new one).
+
+3.1. If the price moves away from the order price, the order is updated to the current prices.
+
+
+The strategy and its parameters can be changed in the market-market-maker.py file.
+
+CAUTION! The bot in its original form consistently brings a loss, without changing the strategy, you will lose money.
+
 
